@@ -25,6 +25,9 @@ var mapContainer = document.getElementById('map'), // 카카오맵 표시
 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 카카오맵 생성
 
+var binmarker1  = new kakao.maps.LatLng(36.310778, 127.378468); 
+var binmarker2  = new kakao.maps.LatLng(36.310452, 127.378399); // 마커 표시 좌표
+
 // 마커를 생성합니다
 var marker = new kakao.maps.Marker({
   position: binmarker1
@@ -37,10 +40,7 @@ var marker2 = new kakao.maps.Marker({
 marker.setMap(map);
 marker2.setMap(map);
 
-var binmarker1  = new kakao.maps.LatLng(36.310778, 127.378468); 
-var binmarker2  = new kakao.maps.LatLng(36.310452, 127.378399); // 마커 표시 좌표
-
-var binwindow1 = '<div style="padding:5px;">쓰레기통 테스트 </div>',
+var binwindow1 = '<div style="padding:5px;">쓰레기통 테스트</div>',
     binwinfo1 = new kakao.maps.LatLng(36.310778, 127.378468);
 var binwindow2 = '<div style="padding:5px;">bin test</div>'; 
     binwinfo2 = new kakao.maps.LatLng(36.310452, 127.378399); 
