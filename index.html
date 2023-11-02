@@ -25,24 +25,32 @@ var mapContainer = document.getElementById('map'), // 카카오맵 표시
 var map = new kakao.maps.Map(mapContainer, mapOption); // 카카오맵 생성
 
 var markerPositions = [
-  new kakao.maps.LatLng(36.31, 127.3784),
-  new kakao.maps.LatLng(36.31, 127.3786),
-  new kakao.maps.LatLng(36.31, 127.3789),
-  new kakao.maps.LatLng(36.3099, 127.3791),
-  new kakao.maps.LatLng(36.3099, 127.3785),
-  new kakao.maps.LatLng(36.3099, 127.3788),
-  new kakao.maps.LatLng(36.3099, 127.3791)
+  { position: new kakao.maps.LatLng(36.31, 127.3784), message: 'Marker 1' },
+  { position: new kakao.maps.LatLng(36.31, 127.3786), message: 'Marker 2' },
+  { position: new kakao.maps.LatLng(36.31, 127.3789), message: 'Marker 3' },
+  { position: new kakao.maps.LatLng(36.3099, 127.3791), message: 'Marker 4' },
+  { position: new kakao.maps.LatLng(36.3099, 127.3785), message: 'Marker 5' },
+  { position: new kakao.maps.LatLng(36.3099, 127.3788), message: 'Marker 6' },
+  { position: new kakao.maps.LatLng(36.3099, 127.3791), message: 'Marker 7' }
 ];
 
-var markers = markerPositions.map(function(position) {
-  return new kakao.maps.Marker({
-    position: position
-  });
+markerPositions.forEach(function(data) {
+  displayMarker(data.position, data.message);
 });
 
-markers.forEach(function(marker) {
-  marker.setMap(map);
-});
+function displayMarker(locPosition, message) {
+    var marker = new kakao.maps.Marker({  
+        map: map, 
+        position: locPosition
+    }); 
+    
+    var infowindow = new kakao.maps.InfoWindow({
+        content : '<div style="padding:5px;">' + message + '</div>',
+        removable : true
+    });
+
+    infowindow.open(map, marker);
+}    
 
 if (navigator.geolocation) {
     
@@ -66,27 +74,6 @@ if (navigator.geolocation) {
         
     displayMarker(locPosition, message);
 }
-
-// 마커/인포윈도우 표시
-function displayMarker(locPosition, message) {
-    var marker = new kakao.maps.Marker({  
-        map: map, 
-        position: locPosition
-    }); 
-    
-    var binwindow1 = message, 
-        iwRemoveable = true;
-
-    var infowindow = new kakao.maps.InfoWindow({
-        content : binwindow1,
-        removable : iwRemoveable
-    });
-
-    infowindow.open(map, marker);
-    
-    // 지도 중심좌표를 접속위치로 변경
-    map.setCenter(locPosition);      
-}    
 </script>
 <!-- <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=a0fccc5b90fa72e9183211b2d1ea006c"></script>
 <script>
