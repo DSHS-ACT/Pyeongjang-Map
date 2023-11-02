@@ -1,45 +1,32 @@
-/**
- * @license
- * Copyright 2019 Google LLC. All Rights Reserved.
- * SPDX-License-Identifier: Apache-2.0
- */
-/* 
- * Always set the map height explicitly to define the size of the div element
- * that contains the map. 
- */
- #map {
-    height: 100%;
-  }
-  
-  /* 
-   * Optional: Makes the sample page fill the window. 
-   */
-  html,
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Noto Sans', sans-serif;
+  background: linear-gradient(to right, #1f4037, #99f2c8);
+}
 
-  /* map {
-    width: 100%;
-    height: 350%;
-   } */
-  
-  .custom-map-control-button {
-    background-color: #fff;
-    border: 0;
-    border-radius: 2px;
-    box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
-    margin: 10px;
-    padding: 0 0.5em;
-    font: 400 18px Roboto, Arial, sans-serif;
-    overflow: hidden;
-    height: 40px;
-    cursor: pointer;
-  }
-  .custom-map-control-button:hover {
-    background: rgb(235, 235, 235);
-  }
-  
-  
+#map {
+  height: 85%;
+  border-radius: 25px;
+  box-shadow: 0px 10px 38px 0px rgba(0,0,0,0.75);
+  margin: 50px auto;
+  max-width: 1400px;
+}
+
+.custom-map-control-button {
+  border-radius: 2px;
+  box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+  margin: 10px;
+  padding: 0.5em;
+  font: 400 18px 'Noto Sans', sans-serif;
+  height: 40px;
+  cursor: pointer;
+  background: #ffff;
+  border: 0;
+  overflow: hidden;
+}
+
+.custom-map-control-button:hover {
+  background: rgb(235, 235, 235);
+}
