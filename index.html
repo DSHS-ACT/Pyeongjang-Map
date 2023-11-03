@@ -23,7 +23,7 @@
             <script>
         var mapContainer = document.getElementById('map'), // 카카오맵 표시
             mapOption = { 
-                center: new kakao.maps.LatLng(33.450701, 126.570667), // 카카오맵 표시 좌표
+                center: new kakao.maps.LatLng(36.31, 127.3784), // 카카오맵 표시 좌표
                 mapTypeId: kakao.maps.MapTypeId.SKYVIEW, // 카카오맵 타입
                 level: 0 // 지도 확대 레벨 
             }; 
@@ -31,13 +31,12 @@
         var map = new kakao.maps.Map(mapContainer, mapOption); // 카카오맵 생성
 
         var markerPositions = [
-        { position: new kakao.maps.LatLng(36.31, 127.3784), message: '휴지통 위치' },
-        { position: new kakao.maps.LatLng(36.31, 127.3786), message: '휴지통 위치' },
-        { position: new kakao.maps.LatLng(36.31, 127.3789), message: '휴지통 위치' },
-        { position: new kakao.maps.LatLng(36.3099, 127.3791), message: '휴지통 위치' },
-        { position: new kakao.maps.LatLng(36.3099, 127.3785), message: '휴지통 위치' },
-        { position: new kakao.maps.LatLng(36.3099, 127.3788), message: '휴지통 위치' },
-        { position: new kakao.maps.LatLng(36.3099, 127.3791), message: '휴지통 위치' }
+        { position: new kakao.maps.LatLng(36.31, 127.3784), message: '일반 쓰레기' },
+        { position: new kakao.maps.LatLng(36.31, 127.3786), message: '플라스틱' },
+        { position: new kakao.maps.LatLng(36.31, 127.3789), message: '일반 쓰레기' },
+        { position: new kakao.maps.LatLng(36.3099, 127.3785), message: '일반 쓰레기' },
+        { position: new kakao.maps.LatLng(36.3099, 127.3788), message: '플라스틱' },
+        { position: new kakao.maps.LatLng(36.3099, 127.3791), message: '일반 쓰레기' }
         ];
 
         markerPositions.forEach(function(data) {
@@ -49,13 +48,14 @@
                 map: map, 
                 position: locPosition
             }); 
-            
-            var infowindow = new kakao.maps.InfoWindow({
-                content : '<div style="padding:5px;">' + message + '</div>',
-                removable : true
+        
+            var customOverlay = new kakao.maps.CustomOverlay({
+                position: locPosition,
+                content: '<div style="background-color: rgba(255, 255, 255, 0.6); border: 1px solid #888; padding: 5px; margin-top: -70px;">' + message + '</div>',
+                map: map
             });
-
-            infowindow.open(map, marker);
+        
+            customOverlay.setMap(map);
         }    
 
         if (navigator.geolocation) {
