@@ -18,13 +18,13 @@
     </div>
     <small>휴지통 위치를 표시합니다</small>
     <div id="map" style="width:100%;height:550px;"></div>
-
-            <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=a0fccc5b90fa72e9183211b2d1ea006c"></script>
-            <script>
+    <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=a0fccc5b90fa72e9183211b2d1ea006c"></script>
+    <script>
         var mapContainer = document.getElementById('map'), // 카카오맵 표시
             mapOption = { 
                 center: new kakao.maps.LatLng(36.3099, 127.3788), // 카카오맵 표시 좌표
                 mapTypeId: kakao.maps.MapTypeId.SKYVIEW, // 카카오맵 타입
+                draggable: false, // 드래그 불가능
                 level: 0 // 지도 확대 레벨 
             }; 
 
@@ -80,7 +80,21 @@
                 
             displayMarker(locPosition, message);
         }
+        var sw = new kakao.maps.LatLng(36.31, 127.3784), // 사각형 영역의 남서쪽 좌표
+        ne = new kakao.maps.LatLng(36.3099, 127.3791); // 사각형 영역의 북동쪽 좌표
+
+        var imageBounds = new kakao.maps.LatLngBounds(sw, ne);
+
+        var groundOverlay = new kakao.maps.GroundOverlay(
+        './images/maps.png',  // 이미지 주소
+        imageBounds// 이미지가 표시될 좌표
+        );
+
+        // 지도 위에 GroundOverlay를 표시합니다.
+        groundOverlay.setMap(map);
         </script>
+        <a>자세한 위치는 아래 이미지를 확인해주세요.</a>
+        <img src="https://media.discordapp.net/attachments/981572082259357697/1169871137832968213/image.png?ex=6556fa66&is=65448566&hm=2803dccd3d01251ada0e36e63a60455f980a34120180c746f60b28b4f2fc07e6&=&width=1590&height=592" alt="지도" style="width: 90%; height: 34%; align-items: center; margin-left: 5%; margin-top: 5%;">   
         <div id="footer">대전대신고등학교</div>
     </body>
 </html>
